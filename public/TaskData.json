@@ -1,0 +1,51 @@
+[
+    {
+      "TaskTitle": "Complete Project Proposal",
+      "Priority": "High",
+      "email": "mama@mami.com",
+      "deadLine": "2023-01-31",
+      "description": "Draft and finalize the project proposal for client review.",
+      "status": "Todo"
+    },
+    {
+      "TaskTitle": "Review Monthly Reports",
+      "Priority": "Medium",
+      "email": "chacha@chachi.com",
+      "deadLine": "2023-02-15",
+      "description": "Examine and provide feedback on the monthly financial and performance reports.",
+      "status": "ongoing"
+    },
+    {
+      "TaskTitle": "Prepare Presentation Slides",
+      "Priority": "High",
+      "email": "mama@mami.com",
+      "deadLine": "2023-02-10",
+      "description": "Create compelling presentation slides for the upcoming client meeting.",
+      "status": "completed"
+    },
+    {
+      "TaskTitle": "Update Website Content",
+      "Priority": "Low",
+      "email": "mongoDb@gmail.com",
+      "deadLine": "2023-03-05",
+      "description": "Refresh the content on the company website to reflect the latest information.",
+      "status": "ongoing"
+    },
+    {
+      "TaskTitle": "Conduct Market Research",
+      "Priority": "Medium",
+      "email": "chacha@chachi.com",
+      "deadLine": "2023-02-28",
+      "description": "Gather data and insights through market research to inform future business strategies.",
+      "status": "completed"
+    },
+    {
+      "TaskTitle": "Schedule Team Meeting",
+      "Priority": "Low",
+      "email": "mongoDb@gmail.com",
+      "deadLine": "2023-02-07",
+      "description": "Coordinate and schedule a team meeting to discuss ongoing projects and address any concerns.",
+      "status": "Todo"
+    }
+  ]
+  
