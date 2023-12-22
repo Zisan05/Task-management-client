@@ -24,7 +24,7 @@ const handleGoogle = () =>{
          const email = result.user.email;
          const newUser = {email,photo,name,role : 'user'}
          console.log(newUser); 
-         fetch('http://localhost:5000/users',{
+         fetch('https://task-management-server-mocha.vercel.app/users',{
           method:"POST",
           headers: {
               "content-type":"application/json"
@@ -103,7 +103,7 @@ const handleGoogle = () =>{
 
        const newUser = {name,email,photo,role : 'user'};
 
-       fetch('http://localhost:5000/users',{
+       fetch('https://task-management-server-mocha.vercel.app/users',{
         method:"POST",
         headers: {
             "content-type":"application/json"

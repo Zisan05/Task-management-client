@@ -24,7 +24,7 @@ const DashBoard = () => {
                     <NavLink className=" py-[15px]" to ={"/dashboard/addTask"}> <MdOutlinePostAdd></MdOutlinePostAdd>Create Task</NavLink></li>   
                  <li className="py-[15px]">
                     
-                    <NavLink className=" py-[15px]" to ={"/dashboard/alltask"}> <BiTask></BiTask>My Task</NavLink></li>   
+                    <NavLink className=" py-[15px]" to ={"/dashboard/alltask"}> <BiTask></BiTask>Task Management</NavLink></li>   
                  <li className="py-[15px]">
                     
                     <NavLink className=" py-[15px]" to ={"/"}><FaHome></FaHome> Home page</NavLink></li>

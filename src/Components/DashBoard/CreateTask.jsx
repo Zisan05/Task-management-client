@@ -23,7 +23,7 @@ const CreateTask = () => {
               };
               console.log(createATask);
               const contextRes = await axios.post(
-                   "http://localhost:5000/addTask",
+                   "https://task-management-server-mocha.vercel.app/addTask",
                    createATask
               );
               console.log(contextRes.data);

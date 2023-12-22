@@ -9,14 +9,18 @@ import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import { MdPendingActions } from "react-icons/md";
 import CountDown from "../CountDown/CountDown";
+import { Link } from "react-router-dom";
 
 
 const AllTasks = () => {
 
+    const today = new Date().getTime();
+     console.log("today", today);
+
     const { refetch, data: taskData = [] } = useQuery({
         queryKey: ["addTask"],
         queryFn: async () => {
-            const res = await axios.get("http://localhost:5000/addTask");
+            const res = await axios.get("https://task-management-server-mocha.vercel.app/addTask");
             return res.data;
         },
     });
@@ -25,7 +29,7 @@ const AllTasks = () => {
 
         const updateValue = { status: status }
         console.log(updateValue);
-        axios.put(`http://localhost:5000/addTask/${id}`, updateValue)
+        axios.put(`https://task-management-server-mocha.vercel.app/addTask/${id}`, updateValue)
             .then(res => {
                 if (res.data.modifiedCount > 0)
                     Swal.fire(
@@ -41,7 +45,7 @@ const AllTasks = () => {
         const updateComplete = { status: status }
         console.log(updateComplete);
 
-        axios.put(`http://localhost:5000/addTask/${id}`, updateComplete)
+        axios.put(`https://task-management-server-mocha.vercel.app/addTask/${id}`, updateComplete)
             .then(res => {
                 if (res.data.modifiedCount > 0)
                     Swal.fire(
@@ -66,7 +70,7 @@ const AllTasks = () => {
             confirmButtonText: "Yes, Remove this context!",
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`http://localhost:5000/addTask/${id}`).then((res) => {
+                axios.delete(`https://task-management-server-mocha.vercel.app/addTask/${id}`).then((res) => {
                     if (res.data.deletedCount > 0) {
                         Swal.fire({
                             title: "Deleted!",
@@ -99,9 +103,9 @@ const AllTasks = () => {
 
             <div className=" overflow-hidden">
                 <h1 className="my-5 text-2xl md:text-4xl font-bold text-center text-white">
-                    My Task
+                    Task Management
                 </h1>
-                <div className="grid md:grid-cols-3 gap-5 max-h-screen overflow-y-auto p-2">
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 max-h-screen overflow-y-auto p-2">
                     <div className="border rounded-[5px]">
                         <div className="flex justify-center gap-[5px]">
                             <h1 className="text-center font-bold text-xl text-white">Todo</h1>
@@ -124,8 +128,17 @@ const AllTasks = () => {
                                 <div className="flex items-center">
                                     <FaTrash onClick={() => handleRemoveTask(item._id)} className="text-white text-[28px] mx-auto"></FaTrash>
 
-                                    <GiRunningNinja onClick={() => handleOngoingUpdate(item._id, item.status)} className="text-white text-center text-[30px]"></GiRunningNinja>
-                                    <TiEdit className="text-white text-[28px] mx-auto"></TiEdit>
+                                    {new Date(
+                                        item.deadLine
+                                    ).getTime() < today ? <button disabled onClick={() => handleOngoingUpdate(item._id, item.status)}>
+                                        <GiRunningNinja className="text-white text-center text-[30px]"></GiRunningNinja>
+                                    </button> : <button onClick={() => handleOngoingUpdate(item._id, item.status)}>
+                                        <GiRunningNinja className="text-white text-center text-[30px]"></GiRunningNinja>
+                                    </button>}
+                                    <button className="text-white text-[28px] mx-auto">
+                                    <Link to = {`/dashboard/edit/${item._id}`}>
+                                    <TiEdit  ></TiEdit></Link>
+                                    </button>
                                 </div>
 
                             </div>)
@@ -152,8 +165,17 @@ const AllTasks = () => {
                                 </div>
                                 <div className="flex items-center">
                                     <FaTrash onClick={() => handleRemoveTask(item._id)} className="text-white text-[28px] mx-auto"></FaTrash>
-                                    <IoMdCloudDone onClick={() => handleCompleteUpdate(item._id, item.status)} className="text-white text-center text-[30px]"></IoMdCloudDone>
-                                    <TiEdit className="text-white text-[28px] mx-auto"></TiEdit>
+                                    {new Date(
+                                        item.deadLine
+                                    ).getTime() < today  ? <button className="" disabled onClick={() => handleCompleteUpdate(item._id, item.status)}>
+                                    <IoMdCloudDone className="text-white text-center text-[30px]"></IoMdCloudDone>
+                                    </button> : <button onClick={() => handleCompleteUpdate(item._id, item.status)}>
+                                    <IoMdCloudDone className="text-white text-center text-[30px]"></IoMdCloudDone>
+                                    </button>}
+                                    <button className="text-white text-[28px] mx-auto">
+                                    <Link to = {`/dashboard/edit/${item._id}`}>
+                                    <TiEdit ></TiEdit></Link>
+                                    </button>
                                 </div>
                             </div>
                             )
@@ -178,7 +200,22 @@ const AllTasks = () => {
                                         deadLine={item.deadLine}
                                     ></CountDown>
                                 </div>
-                                <FaTrash onClick={() => handleRemoveTask(item._id)} className="text-white text-[28px] mx-auto"></FaTrash>
+                               
+                                <div className="flex gap-[40px] justify-center">
+                                <div>
+                                <button onClick={() => handleRemoveTask(item._id)} className="text-white text-[28px] mx-auto ">
+                                <FaTrash></FaTrash>
+                                </button>
+                                </div>
+
+                                <div>
+                                <button className="text-white text-[28px] mx-auto">
+                                    <Link to = {`/dashboard/edit/${item._id}`}>
+                                    <TiEdit></TiEdit></Link>
+                                    </button>
+                                </div>
+                                </div>
+                                
                             </div>)
                         }
 

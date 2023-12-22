@@ -18,6 +18,7 @@ import AllTasks from './Components/DashBoard/AllTasks';
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Privet from './Components/Privat/Privat';
+import EditTask from './Components/DashBoard/EditTask';
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
@@ -47,7 +48,7 @@ const router = createBrowserRouter([
       {
         path: "userprofile",
         element:<UserProfile></UserProfile>,
-        loader:()=> fetch('http://localhost:5000/users')
+        loader:()=> fetch('https://task-management-server-mocha.vercel.app/users')
       },
       {
         path:"addTask",
@@ -56,7 +57,12 @@ const router = createBrowserRouter([
       {
         path: "alltask",
         element:<AllTasks></AllTasks>,
-        loader: ()=> fetch('http://localhost:5000/addTask')
+        loader: ()=> fetch('https://task-management-server-mocha.vercel.app/addTask')
+      },
+      {
+        path: "edit/:_id",
+        element:<EditTask></EditTask>,
+        loader: ({ params }) => fetch(`https://task-management-server-mocha.vercel.app/addTask/${params._id}`)
       }
     ]
   }
